@@ -1,3 +1,7 @@
+<?php
+  session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +40,14 @@
         <li class="nav-item">
           <a class="nav-link" href="reportes.php">Reportes</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Usuario
+        <li class="nav-item dropdown" >
+          <a style="color: red;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuario: <?= ($_SESSION['usuario']['nombre']);?>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Editar Datos</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Salir</a></li>
+            <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
             
           </ul>
         </li>
