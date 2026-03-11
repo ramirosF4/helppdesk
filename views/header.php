@@ -24,12 +24,15 @@
         <li class="nav-item active">
           <a class="nav-link" href="inicio.php">Inicio</a>
         </li>
+        <?php if($_SESSION['usuario']['rol'] == 1){ ?>
         <li class="nav-item">
           <a class="nav-link" href="misDispositivos.php">Mis disositivos</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="misReportes.php">Reportes soporte</a>
         </li>
+        <?php }elseif ($_SESSION['usuario']['rol'] == 2) { ?>
         <!-- De aqui son las vistas del administrador-->
         <li class="nav-item">
           <a class="nav-link" href="usuarios.php">Usuarios</a>
@@ -40,9 +43,10 @@
         <li class="nav-item">
           <a class="nav-link" href="reportes.php">Reportes</a>
         </li>
+        <?php } ?>
         <li class="nav-item dropdown" >
           <a style="color: red;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Usuario: <?= ($_SESSION['usuario']['nombre']);?>
+            Usuario: <?php echo $_SESSION['usuario']['nombre'];?>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Editar Datos</a></li>
