@@ -33,11 +33,11 @@
       <th>Apellido Materno</th>
       <th>Nombre</th>
       <th>Edad</th>
-      <th>Sexo</th>
+      <th>Ubicacion</th>
       <th>Telefono</th>
       <th>Correo</th>
       <th>Usuario</th>
-      <th>Ubicacion</th>
+      <th>Sexo</th>
       <th>Reset Password</th>
       <th>Cambiar rol</th>
       <th>Activar</th>
@@ -53,11 +53,11 @@
       <td><?php echo $mostrar['materno'];?></td>
       <td><?php echo $mostrar['nombrePersona'];?></td>
       <td><?php echo $mostrar['fechaNacimiento'];?></td>
-      <td><?php echo $mostrar['sexo'];?></td>
+      <td><?php echo $mostrar['ubicacion'];?></td>
       <td><?php echo $mostrar['telefono'];?></td>
       <td><?php echo $mostrar['correo'];?></td>
       <td><?php echo $mostrar['nombreUsuario'];?></td>
-      <td><?php echo $mostrar['ubicacion'];?></td>
+      <td><?php echo $mostrar['sexo'];?></td>
       <td>
           <button class="btn btn-success btn-sm">
             Cambiar password
