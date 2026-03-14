@@ -39,7 +39,6 @@
       <th>Usuario</th>
       <th>Sexo</th>
       <th>Reset Password</th>
-      <th>Cambiar rol</th>
       <th>Activar</th>
       <th>Editar</th>
       <th>Eliminar</th>
@@ -64,11 +63,6 @@
           </button>
       </td>
       <td>
-          <button class=" btn btn-primary btn-sm">
-            Cambiar Rol
-          </button>
-      </td>
-      <td>
         <?php 
           if($mostrar['estatus'] == 1){ 
         ?>
@@ -85,8 +79,19 @@
           } 
         ?>
       </td>
-      <td><button class="btn btn-warning btn-sm">fechaNacimiento</button></td>
-      <td><button class ="btn btn-danger btn-sm">Eliminar</button></td>
+      <td>
+        <button class="btn btn-warning btn-sm" 
+                data-bs-toggle="modal" 
+                data-bs-target="#modalActualizarUsuarios"
+                onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
+          Editar
+        </button>
+      </td>
+      <td>
+        <button class ="btn btn-danger btn-sm">
+        Eliminar
+      </button>
+      </td>
     </tr>
     <?php  }?>
   </tbody>
