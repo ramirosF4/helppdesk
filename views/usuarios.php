@@ -10,7 +10,7 @@
             <p class="lead">
               <button class= "btn btn-primary"data-bs-toggle="modal" data-bs-target="#modalAgregarUsuarios">Agregar Usuario</button>
               <hr>
-              <div id= "tablaUsuariosLoad"></div>
+              <div id="tablaUsuariosLoad"></div>
             </p>  
             </div>
         </div>
