@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/bootstrap/bootstrap.min.css">
     <script src="/helppdesk/public/jquery/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../public/datatable/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../public/css/plantilla.css">
     <title>help-desk</title>
 </head>
