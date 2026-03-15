@@ -45,3 +45,21 @@ function obtenerDatosUsuario(idUsuario){
     });
 
 }
+
+function actualizarUsuario(){
+    $.ajax ({
+        type: "POST", 
+        data:$('#frmActualizarUsuario').serialize(),
+        url:"../procesos/usuarios/crud/actualizarUsuario.php" ,
+        success: function(respuesta){
+            if(respuesta == 1 ){
+                respuesta = respuesta.trim();
+                $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php"); 
+                Swal.fire(":D", "Actualizado correctamente", "success"); 
+            }else{
+                Swal.fire(".(", "Error al actualizar agregar el usaurio!!" + respuesta, "error")
+            }
+        }
+    });
+    return false; 
+}
