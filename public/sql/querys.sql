@@ -35,3 +35,18 @@ VALUES
 ("Bocinas"),
 ("Microfono"),
 ("Proyector");
+
+
+
+
+SELECT
+    id_persona,
+    concat(paterno," ",materno," ", nombre) AS nombre
+FROM t_persona;
+
+
+SELECT 
+
+id_equipo, nombre  
+
+FROM t_cat_equipo; 
