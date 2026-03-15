@@ -52,8 +52,9 @@ function actualizarUsuario(){
         data:$('#frmActualizarUsuario').serialize(),
         url:"../procesos/usuarios/crud/actualizarUsuario.php" ,
         success: function(respuesta){
+            respuesta = respuesta.trim();
             if(respuesta == 1 ){
-                respuesta = respuesta.trim();
+                $('#modalActualizarUsuarios').modal('hide');
                 $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php"); 
                 Swal.fire(":D", "Actualizado correctamente", "success"); 
             }else{

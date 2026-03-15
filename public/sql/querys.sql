@@ -13,3 +13,25 @@ FROM
 UPDATE t_usuarios SET id_rol = ? 
                       usuario = ?, 
                       ubicacion = ?
+
+
+
+
+CREATE TABLE `t_cat_equipo`(
+    `id_equipo` INT NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR (245) NOT NULL,
+    `descripcion` VARCHAR (245) NULL, 
+    PRIMARY KEY(`id_equipo`));
+
+
+
+INSERT INTO t_cat_equipo (nombre) 
+VALUES 
+("PC"),
+("Laptop"),
+("Mause"),
+("Teclado"),
+("Monitor"),
+("Bocinas"),
+("Microfono"),
+("Proyector");
