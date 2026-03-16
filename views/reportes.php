@@ -16,6 +16,7 @@
     </div>
 
 <?php   
+    include "reportesAdmin/modalAgregarSoluciion.php";
     include "footer.php";
 ?>
     <script src="../public/js/reportesAdmin/reportesAdmin.js"></script>
