@@ -1,4 +1,5 @@
 <?php 
+  
     include "header.php"; 
     if(isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 1 ){
         include "../clases/Conexion.php";
