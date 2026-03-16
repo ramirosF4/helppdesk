@@ -64,9 +64,13 @@
                 ?>
             </td>
             <td><?php echo $mostrar['solucion'] ?></td>
-            <td>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
+            <?php 
+                if ($mostrar['solucion'] == "") {
+            ?>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarReporteCliente(<?php echo $mostrar['idReporte'] ?>)">Eliminar</button>
+                    </td>
+            <?php } ?>
         </tr>
         <?php } ?>
     </tbody>

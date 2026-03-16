@@ -51,6 +51,7 @@ function eliminarAsignacion(idAsignacion){
             });
         }
     });
+    return false; 
 
 }
 
