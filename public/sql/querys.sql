@@ -127,12 +127,26 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 
-id_persona    
-id_equipo     
-marca         
-modelo        
-color         
-descripcion   
-memoria       
-disco_duro    
-procesador
+	SELECT 
+    persona.id_persona,
+    CONCAT(persona.paterno,
+            ' ',
+            persona.materno,
+            ' ',
+            persona.nombre) AS nombrePersona,
+    equipo.id_equipo AS idEquipo,
+    equipo.nombre AS nombreEquipo,
+    asignacion.id_asignacion AS idAsignacion,
+    asignacion.marca,
+    asignacion.modelo,
+    asignacion.color,
+    asignacion.descripcion,
+    asignacion.memoria,
+    asignacion.disco_duro,
+    asignacion.procesador
+FROM
+    t_asignacion AS asignacion
+        INNER JOIN
+    t_persona AS persona ON asignacion.id_persona = persona.id_persona
+        INNER JOIN
+    t_cat_equipo AS equipo ON asignacion.id_equipo = equipo.id_equipo;
