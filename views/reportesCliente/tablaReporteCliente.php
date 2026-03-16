@@ -34,7 +34,7 @@
 ?>
 
 
-<table class="table table-sm dt-responsive nowrap" id="tablaAsignacionDataTable" style="width:100%"  id="tablaReportesClienteDataTable">
+<table class="table table-sm table-bordered dt-responsive nowrap"  style="width:100%"  id="tablaReportesClienteDataTable">
     <thead>
         <th>#</th>
         <th>Persona</th>
@@ -56,20 +56,16 @@
             <td>
                 <?php 
                     $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<div class="alert alert-danger" role="alert">
-                                        Abierto
-                                      </div>' ; 
+                    $cadenaEstatus = '<span class="badge bg-success">Abierto</span>' ; 
                     if ($estatus == 0) {
-                        $cadenaEstatus = '<div class="alert alert-success" role="alert">
-                                                Cerrado
-                                          </div>';
+                        $cadenaEstatus = '<span class="badge bg-danger">Cerrado</span>';
                     }
                     echo $cadenaEstatus; 
                 ?>
             </td>
             <td><?php echo $mostrar['solucion'] ?></td>
             <td>
-                <button class="btn btn-danger btn-sm"></button>
+                <button class="btn btn-danger btn-sm">Eliminar</button>
             </td>
         </tr>
         <?php } ?>
