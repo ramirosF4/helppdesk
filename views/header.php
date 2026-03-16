@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../public/css/plantilla.css">
     <link rel="stylesheet" href="../public/datatable/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="../public/datatable/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="../public/fontawesome/css/all.min.css">
     <title>help-desk</title>
 </head>
 <body>
