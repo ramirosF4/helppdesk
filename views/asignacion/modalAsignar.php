@@ -1,7 +1,7 @@
 
 
 <!-- Modal -->
-<form id="frmAsignaEquipo" method="POST" onsubmit="return asignarEquipo() ">
+<form id="frmAsignaEquipo" method="POST" onsubmit="return asignarEquipo()">
 <div class="modal fade" id="modalAsignarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -16,9 +16,14 @@
 
                 <?php 
                     $sql = "SELECT
-                                id_persona,
-                                CONCAT(paterno,' ',materno,' ', nombre) AS nombre
-                            FROM t_persona ORDER BY paterno";
+                                persona.id_persona,
+                                CONCAT(persona.paterno,' ',persona.materno,' ',persona.nombre) AS nombre
+                            FROM 
+                                t_persona AS persona 
+                                    INNER JOIN 
+                                t_usuarios AS usuario ON persona.id_persona = usuario.id_persona 
+                                    AND usuario.id_rol = 1
+                            ORDER BY persona.paterno";
                     $respuesta = mysqli_query($conexion, $sql);
                 ?>
 
@@ -82,7 +87,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Asignar</button>
+        <button class="btn btn-primary">Asignar</button>
       </div>
     </div>
   </div>
