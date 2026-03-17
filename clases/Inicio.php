@@ -5,7 +5,7 @@
         public function actualizarPersonales($datos){
             $conexion = Conexion::conectar();
             $idUsuario = $datos['idUsuario']; 
-            $sql = "SELECT id_persona FROM t_usuarios WHERE id_usuarios = '$idUsuario'"; 
+            $sql = "SELECT id_persona FROM t_usuarios WHERE id_usuario = '$idUsuario'"; 
             $respuesta = mysqli_query($conexion, $sql); 
             $idPersona = mysqli_fetch_row($respuesta)[0];
 
@@ -26,7 +26,8 @@
                                             $datos['nombre'],
                                             $datos['telefono'],
                                             $datos['correo'],
-                                            $datos['fecha']);
+                                            $datos['fecha'],
+                                            $idPersona);
             $respuesta = $query->execute(); 
             $query->close(); 
 

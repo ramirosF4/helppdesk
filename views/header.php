@@ -55,10 +55,16 @@
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" href="#"  
-                  data-bs-toggle="modal" data-bs-target="#modalActualizarDatosPersonales" >Editar Datos</a></li>
+                  data-bs-toggle="modal" data-bs-target="#modalActualizarDatosPersonales" onclick="return obtenerDatosPersonalesInicio('<?php echo $_SESSION['usuario']['id']?>')" >
+                  Editar Datos
+              </a>
+            </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
-            
+            <li>
+              <a class="dropdown-item" href="../procesos/usuarios/login/salir.php">
+                Salir
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
