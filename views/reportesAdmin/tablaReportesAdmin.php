@@ -47,35 +47,42 @@
     <tbody>
         <?php while($mostrar = mysqli_fetch_array($respuesta)){ ?>
         <tr>
-            <td><?php echo $contador++ ?></td>
-            <td><?php echo $mostrar['nombrePersona']; ?></td>
-            <td><?php echo $mostrar['nombreEquipo']; ?></td>
-            <td><?php echo $mostrar['fecha'] ?></td>
-            <td><?php echo $mostrar['problema'] ?></td>
-            <td>
-                <?php 
-                    $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<span class="badge bg-success">Abierto</span>' ; 
-                    if ($estatus == 0) {
-                        $cadenaEstatus = '<span class="badge bg-danger">Cerrado</span>';
-                    }
-                    echo $cadenaEstatus; 
-                ?>
-            </td>
-            <td>
-                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarSolucionReporte" onclick="return obtenerDatosSolucion('<?php echo $mostrar['idReporte'];?>')">
-                    Solucion
-                </button>
-                <?php echo $mostrar['solucion'] ?></td>
-            <?php 
-                if ($mostrar['solucion'] == "") {
-            ?>
+                    <td><?php echo $contador++ ?></td>
+                    <td><?php echo $mostrar['nombrePersona']; ?></td>
+                    <td><?php echo $mostrar['nombreEquipo']; ?></td>
+                    <td><?php echo $mostrar['fecha'] ?></td>
+                    <td><?php echo $mostrar['problema'] ?></td>
                     <td>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarReporteAdmin(<?php echo $mostrar['idReporte'] ?>)">Eliminar</button>
+                        <?php 
+                            $estatus = $mostrar['estatus'];
+                            $cadenaEstatus = '<span class="badge bg-danger">Abierto</span>' ; 
+                            if ($estatus == 0) {
+                                $cadenaEstatus = '<span class="badge bg-succesr">Cerrado</span>';
+                            }
+                            echo $cadenaEstatus; 
+                        ?>
                     </td>
-            <?php } ?>
-        </tr>
-        <?php } ?>
+                <td>
+                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarSolucionReporte" onclick="return obtenerDatosSolucion('<?php echo $mostrar['idReporte'];?>')">
+                        Solucion
+                    </button>
+                    <?php echo $mostrar['solucion']; ?>
+                </td>
+
+                <td>
+                <?php 
+                if ($mostrar['solucion'] == "") {
+                ?>
+                    <button class="btn btn-danger btn-sm" onclick="eliminarReporteAdmin(<?php echo $mostrar['idReporte'] ?>)">
+                        Eliminar
+                    </button>
+                <?php 
+                } else {
+                    echo "-";
+                }
+                ?>
+        <?php }?>
+        </td>
     </tbody>
 </table>
 

@@ -5,14 +5,11 @@
     $conexion = $con->conectar();
     $idUsuario = $_SESSION['usuario']['id'];
     $contador = 1; 
+
     $sql =" SELECT 
                 reporte.id_reporte AS idReporte,
                 reporte.id_usuario AS idUsuario,
-                CONCAT(persona.paterno,
-                        ' ',
-                        persona.materno,
-                        ' ',
-                        persona.nombre) AS nombrePersona,
+                CONCAT(persona.paterno,' ',persona.materno,' ',persona.nombre) AS nombrePersona,
                 equipo.id_equipo AS idEquipo,
                 equipo.nombre AS nombreEquipo,
                 reporte.descripcion_problema AS problema,
@@ -21,21 +18,23 @@
                 reporte.fecha as fecha
             FROM
                 t_reportes AS reporte
-                    INNER JOIN
-                t_usuarios AS usuario ON reporte.id_usuario = usuario.id_usuario
-                    INNER JOIN
-                t_persona AS persona ON usuario.id_persona = persona.id_persona
-                    INNER JOIN
-                t_cat_equipo AS equipo ON reporte.id_equipo = equipo.id_equipo
-                    AND reporte.id_usuario = '$idUsuario'";
+            INNER JOIN t_usuarios AS usuario 
+                ON reporte.id_usuario = usuario.id_usuario
+            INNER JOIN t_persona AS persona 
+                ON usuario.id_persona = persona.id_persona
+            INNER JOIN t_cat_equipo AS equipo 
+                ON reporte.id_equipo = equipo.id_equipo
+            AND reporte.id_usuario = '$idUsuario'
+            ORDER BY reporte.fecha DESC";
 
-    $resuesta = mysqli_query($conexion, $sql);
-
+    $respuesta = mysqli_query($conexion, $sql);
 ?>
 
+<div class="table-responsive">
 
-<table class="table table-sm table-bordered dt-responsive nowrap"  style="width:100%"  id="tablaReportesClienteDataTable">
+    <table class="table table-sm table-bordered table-striped" id="tablaReportesClienteDataTable" style="width:100%">
     <thead>
+        <tr>
         <th>#</th>
         <th>Persona</th>
         <th>Dispositivo</th>
@@ -44,41 +43,95 @@
         <th>Estatus</th>
         <th>Solucion</th>
         <th>Eliminar</th>
-    </thead>
-    <tbody>
-        <?php while($mostrar = mysqli_fetch_array($resuesta)){ ?>
-        <tr>
-            <td><?php echo $contador++ ?></td>
-            <td><?php echo $mostrar['nombrePersona']; ?></td>
-            <td><?php echo $mostrar['nombreEquipo']; ?></td>
-            <td><?php echo $mostrar['fecha'] ?></td>
-            <td><?php echo $mostrar['problema'] ?></td>
-            <td>
-                <?php 
-                    $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<span class="badge bg-success">Abierto</span>' ; 
-                    if ($estatus == 0) {
-                        $cadenaEstatus = '<span class="badge bg-danger">Cerrado</span>';
-                    }
-                    echo $cadenaEstatus; 
-                ?>
-            </td>
-            <td><?php echo $mostrar['solucion'] ?></td>
-            <?php 
-                if ($mostrar['solucion'] == "") {
-            ?>
-                    <td>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarReporteCliente(<?php echo $mostrar['idReporte'] ?>)">Eliminar</button>
-                    </td>
-            <?php } ?>
         </tr>
-        <?php } ?>
+    </thead>
+
+    <tbody>
+
+    <?php while($mostrar = mysqli_fetch_array($respuesta)){ ?>
+
+    <tr>
+
+    <td><?php echo $contador++ ?></td>
+
+    <td><?php echo $mostrar['nombrePersona']; ?></td>
+
+    <td><?php echo $mostrar['nombreEquipo']; ?></td>
+
+    <td><?php echo $mostrar['fecha'] ?></td>
+
+    <td><?php echo $mostrar['problema'] ?></td>
+
+    <td>
+    <?php 
+    $estatus = $mostrar['estatus'];
+
+    if ($estatus == 1) {
+        echo '<span class="badge bg-success">Abierto</span>';
+    } else {
+        echo '<span class="badge bg-danger">Cerrado</span>';
+    }
+    ?>
+    </td>
+
+    <td>
+    <?php echo $mostrar['solucion'] == "" ? "-" : $mostrar['solucion']; ?>
+    </td>
+
+    <td>
+
+    <?php 
+    if ($mostrar['solucion'] == "") {
+    ?>
+
+    <button class="btn btn-danger btn-sm"
+    onclick="eliminarReporteAdmin(<?php echo $mostrar['idReporte'] ?>)">
+    Eliminar
+    </button>
+
+    <?php
+    } else {
+    echo "-";
+    }
+    ?>
+
+    </td>
+
+    </tr>
+
+    <?php } ?>
+
     </tbody>
-</table>
+
+    </table>
+
+</div>
 
 <script>
 
-    $(document).ready(function(){
-        $('#tablaReportesClienteDataTable').DataTable();
-    });
+$(document).ready(function(){
+
+$('#tablaReportesClienteDataTable').DataTable({
+    responsive:true,
+    scrollX:true,
+    autoWidth:false,
+    language:{
+        lengthMenu:"Mostrar _MENU_ registros",
+        zeroRecords:"No se encontraron resultados",
+        info:"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        infoEmpty:"Mostrando registros del 0 al 0 de un total de 0 registros",
+        infoFiltered:"(filtrado de un total de _MAX_ registros)",
+        sSearch:"Buscar:",
+        oPaginate:{
+            sFirst:"Primero",
+            sLast:"Último",
+            sNext:"Siguiente",
+            sPrevious:"Anterior"
+        }
+    }
+
+});
+
+});
+
 </script>

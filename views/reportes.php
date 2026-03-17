@@ -16,7 +16,7 @@
     </div>
 
 <?php   
-    include "reportesAdmin/modalAgregarSoluciion.php";
+    include "reportesAdmin/modalAgregarSolucion.php";
     include "footer.php";
 ?>
     <script src="../public/js/reportesAdmin/reportesAdmin.js"></script>
@@ -25,3 +25,5 @@
         header("location:../index.html"); 
     }
 ?>
+
+
