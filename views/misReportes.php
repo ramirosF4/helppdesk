@@ -13,7 +13,7 @@
                 <h1 class="fw-light">Reportes de cliente </h1>
                 <p class="lead">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearReporte">
-                        Crear Reporte
+                        <span class="fas fa-plus"></span> Crear Reporte
                     </button>
                     <hr>
                     <div id="tablaReporteClienteLoad"></div>

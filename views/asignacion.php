@@ -19,7 +19,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2){
 
             <div class="lead">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAsignarEquipo">
-                    Asignar equipo
+                    <span class="fas fa-plus"></span>Asignar equipo
                 </button>
                 <hr>
                 <div id="tablaAsignacionesLoad"></div>

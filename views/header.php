@@ -19,50 +19,63 @@
     <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="inicio.php">help-desk</a>
+    <a class="navbar-brand" href="inicio.php">
+      <img src="../public/img/logoicono.ico" width="30%">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="inicio.php">Inicio</a>
+          <a class="nav-link" href="inicio.php">
+            <span class="fas fa-home"></span> Inicio
+          </a>
         </li>
         <?php if($_SESSION['usuario']['rol'] == 1){ ?>
         <li class="nav-item">
-          <a class="nav-link" href="misDispositivos.php">Mis disositivos</a>
+          <a class="nav-link" href="misDispositivos.php">
+            <span class="fas fa-microchip"></span> Mis disositivos
+          </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="misReportes.php">Reportes soporte</a>
+          <a class="nav-link" href="misReportes.php">
+            <span class="fas fa-file"></span> Reportes soporte</a>
         </li>
         <?php }elseif ($_SESSION['usuario']['rol'] == 2) { ?>
         <!-- De aqui son las vistas del administrador-->
         <li class="nav-item">
-          <a class="nav-link" href="usuarios.php">Usuarios</a>
+          <a class="nav-link" href="usuarios.php">
+            <span class="fas fa-users"></span> Usuarios
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="asignacion.php">Asignacion de equipos</a>
+          <a class="nav-link" href="asignacion.php">
+            <span class="fas fa-list"></span> Asignacion de equipos
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="reportes.php">Reportes</a>
+          <a class="nav-link" href="reportes.php"> 
+            <span class="fas fa-file"></span> Reportes
+          </a>
         </li>
         <?php } ?>
         <li class="nav-item dropdown" >
           <a style="color: red;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Usuario: <?php echo $_SESSION['usuario']['nombre'];?>
+            <span class="fas fa-user"></span> Usuario: <?php echo $_SESSION['usuario']['nombre'];?>
           </a>
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" href="#"  
                   data-bs-toggle="modal" data-bs-target="#modalActualizarDatosPersonales" onclick="return obtenerDatosPersonalesInicio('<?php echo $_SESSION['usuario']['id']?>')" >
-                  Editar Datos
+                  <span class="fas fa-user-edit"></span> Editar Datos
               </a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <a class="dropdown-item" href="../procesos/usuarios/login/salir.php">
-                Salir
+                <span class="fas fa-sign-out-alt"></span> Salir
               </a>
             </li>
           </ul>

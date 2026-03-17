@@ -17,8 +17,8 @@
                         <div class="col-sm-4">Nombre: <span id="nombre"></span> </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Telefono: <span id="telefono"></span> </div>
-                        <div class="col-sm-4">Correo: <span id="correo"></span> </div>
+                        <div class="col-sm-4"><span class="fas fa-phone"></span> Telefono: <span id="telefono"></span> </div>
+                        <div class="col-sm-4"><span class="far fa-envelope"></span> Correo: <span id="correo"></span> </div>
                         <div class="col-sm-4">Edad: <span id="edad"></span> </div>
                     </div>
                 </p>  
