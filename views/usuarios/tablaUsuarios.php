@@ -84,12 +84,12 @@
                 data-bs-toggle="modal" 
                 data-bs-target="#modalActualizarUsuarios"
                 onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
-          Editar
+          <span class="fas fa-edit"></span>
         </button>
       </td>
       <td>
         <button class ="btn btn-danger btn-sm">
-        Eliminar
+        <span class="fas fa-trash-alt"></span> 
       </button>
       </td>
     </tr>

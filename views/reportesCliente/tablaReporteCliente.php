@@ -86,7 +86,7 @@
 
     <button class="btn btn-danger btn-sm"
     onclick="eliminarReporteAdmin(<?php echo $mostrar['idReporte'] ?>)">
-    Eliminar
+    <span class="fas fa-trash-alt"></span>Eliminar
     </button>
 
     <?php
