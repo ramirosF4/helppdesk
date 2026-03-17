@@ -53,7 +53,9 @@
             Usuario: <?php echo $_SESSION['usuario']['nombre'];?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Editar Datos</a></li>
+            <li>
+              <a class="dropdown-item" href="#"  
+                  data-bs-toggle="modal" data-bs-target="#modalActualizarDatosPersonales" >Editar Datos</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
             
@@ -63,3 +65,7 @@
     </div>
   </div>
 </nav>
+
+<?PHP 
+  include "inicio/modalActualizarDatosPersonales.php"
+?>
