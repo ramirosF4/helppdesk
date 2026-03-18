@@ -94,9 +94,39 @@
                     url : "../public/datatable/es_es.json"
                 },
                 dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf'
-                ]
+                buttons: {
+                    buttons: [
+                        {
+                            extend: 'copy', 
+                            className: 'btn btn-outline-info',
+                            text : '<span class="far fa-copy"></></span> Copiar'
+
+                        },
+                        {
+                            extend: 'csv', 
+                            className: 'btn btn-outline-secondary',
+                            text : '<span class="fas fa-file-csv"></span> CSV'
+
+                        },
+                        {
+                            extend: 'excel', 
+                            className: 'btn btn-outline-success',
+                            text : '<span class="far fa-file-excel"></span> XLS'
+
+                        },
+                        {
+                            extend: 'pdf', 
+                            className: 'btn btn-outline-danger',
+                            text : '<span class="far fa-file-pdf"></span> PDF'
+
+                        },
+                    ],
+                    dom:{
+                        button :{
+                            className : 'btn'
+                        }
+                    }
+                }
             });
     });
 </script>
