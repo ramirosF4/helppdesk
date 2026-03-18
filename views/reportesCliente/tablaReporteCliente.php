@@ -86,7 +86,7 @@
 
     <button class="btn btn-danger btn-sm"
     onclick="eliminarReporteAdmin(<?php echo $mostrar['idReporte'] ?>)">
-    <span class="fas fa-trash-alt"></span>Eliminar
+    <span class="fas fa-trash-alt"></span> Eliminar
     </button>
 
     <?php
@@ -128,7 +128,11 @@ $('#tablaReportesClienteDataTable').DataTable({
             sNext:"Siguiente",
             sPrevious:"Anterior"
         }
-    }
+    },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf'
+                ]
 
 });
 

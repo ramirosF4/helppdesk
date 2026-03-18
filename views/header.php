@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../public/datatable/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="../public/datatable/responsive.bootstrap5.css">
     <link rel="stylesheet" href="../public/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../public/datatable/buttons.dataTables.css">
+    <!--  -->
     <title>help-desk</title>
 </head>
 <body>
