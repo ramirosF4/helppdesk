@@ -1,7 +1,13 @@
 
-$(document).ready(function(){
-    $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php"); 
-}); 
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof $ === "undefined") {
+        console.error("jQuery no está cargado");
+        return;
+    }
+    $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php");
+
+});
 function agregarNuevoUsuario(){
     $.ajax({
         type: "POST",
@@ -59,6 +65,32 @@ function actualizarUsuario(){
                 Swal.fire(":D", "Actualizado correctamente", "success"); 
             }else{
                 Swal.fire(".(", "Error al actualizar agregar el usaurio!!" + respuesta, "error")
+            }
+        }
+    });
+    return false; 
+}
+
+
+
+
+function agregarIdUsuarioReset(idUsuario){
+    $('#idUsuarioReset').val(idUsuario);
+}   
+
+function resetPassword(){
+
+    $.ajax({
+        type: "POST",
+        data: $('#frmactualizarPassword').serialize(),
+        url:"../procesos/usuarios/extras/resetPassword.php",
+        success:function(respuesta){
+            respuesta = respuesta.trim();
+            if(respuesta == 1 ){
+                $('#modalResetPassword').modal('hide');
+                Swal.fire(":D", "Actualizado correctamente", "success"); 
+            }else{
+                Swal.fire(".(", "Error al actualizar la contraseña!!" + respuesta, "error")
             }
         }
     });

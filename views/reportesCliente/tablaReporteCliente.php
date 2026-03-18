@@ -111,60 +111,56 @@
 
 $(document).ready(function(){
 
-$('#tablaReportesClienteDataTable').DataTable({
-    responsive:true,
-    scrollX:true,
-    autoWidth:false,
-    language:{
-        lengthMenu:"Mostrar _MENU_ registros",
-        zeroRecords:"No se encontraron resultados",
-        info:"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:"Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:"(filtrado de un total de _MAX_ registros)",
-        sSearch:"Buscar:",
-        oPaginate:{
-            sFirst:"Primero",
-            sLast:"Último",
-            sNext:"Siguiente",
-            sPrevious:"Anterior"
-        }
-    },
-                dom: 'Bfrtip',
-                buttons: {
-                    buttons: [
-                        {
-                            extend: 'copy', 
-                            className: 'btn btn-outline-info',
-                            text : '<span class="far fa-copy"></></span> Copiar'
+    $('#tablaReportesClienteDataTable').DataTable({
+        responsive:true,
+        scrollX:true,
+        autoWidth:false,
+        language:{
+            lengthMenu:"Mostrar _MENU_ registros",
+            zeroRecords:"No se encontraron resultados",
+            info:"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            infoEmpty:"Mostrando registros del 0 al 0 de un total de 0 registros",
+            infoFiltered:"(filtrado de un total de _MAX_ registros)",
+            sSearch:"Buscar:",
+            oPaginate:{
+                sFirst:"Primero",
+                sLast:"Último",
+                sNext:"Siguiente",
+                sPrevious:"Anterior"
+            }
+        },
+                    dom: 'Bfrtip',
+                    buttons: {
+                        buttons: [
+                            {
+                                extend: 'copy', 
+                                className: 'btn btn-outline-info',
+                                text : '<span class="far fa-copy"></></span> Copiar'
 
-                        },
-                        {
-                            extend: 'csv', 
-                            className: 'btn btn-outline-secondary',
-                            text : '<span class="fas fa-file-csv"></span> CSV'
+                            },
+                            {
+                                extend: 'csv', 
+                                className: 'btn btn-outline-secondary',
+                                text : '<span class="fas fa-file-csv"></span> CSV'
 
-                        },
-                        {
-                            extend: 'excel', 
-                            className: 'btn btn-outline-success',
-                            text : '<span class="far fa-file-excel"></span> XLS'
+                            },
+                            {
+                                extend: 'excel', 
+                                className: 'btn btn-outline-success',
+                                text : '<span class="far fa-file-excel"></span> XLS'
 
-                        },
-                        {
-                            extend: 'pdf', 
-                            className: 'btn btn-outline-danger',
-                            text : '<span class="far fa-file-pdf"></span> PDF'
+                            },
+                            {
+                                extend: 'pdf', 
+                                className: 'btn btn-outline-danger',
+                                text : '<span class="far fa-file-pdf"></span> PDF'
 
-                        },
-                    ],
-                    dom:{
-                        button :{
-                            className : 'btn'
-                        }
+                            },
+                        ]
+
                     }
-                }
 
-});
+    });
 
 });
 

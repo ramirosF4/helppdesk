@@ -99,7 +99,7 @@
                         {
                             extend: 'copy', 
                             className: 'btn btn-outline-info',
-                            text : '<span class="far fa-copy"></></span> Copiar'
+                            text : '<span class="far fa-copy"></span> Copiar'
 
                         },
                         {
