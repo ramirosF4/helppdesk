@@ -1,112 +1,124 @@
 <?php   
-    include "../../clases/Conexion.php"; 
-    $con = new   Conexion(); 
-    $conexion = $con->conectar(); 
-    $sql = " SELECT 
-                  usuarios.id_usuario AS idUsuario,
-                  usuarios.usuario AS nombreUsuario,
-                  roles.nombre AS rol,
-                  usuarios.id_rol AS idRol,
-                  usuarios.ubicacion AS ubicacion,
-                  usuarios.activo AS estatus,
-                  usuarios.id_persona AS idPersona,
-                  persona.nombre AS nombrePersona,
-                  persona.paterno AS paterno,
-                  persona.materno AS materno,
-                  persona.fecha_nacimiento fechaNacimiento,
-                  persona.sexo AS sexo,
-                  persona.correo AS correo,
-                  persona.telefono AS telefono
-            FROM
-                  t_usuarios AS usuarios 
-                  INNER JOIN 
-                  t_cat_roles AS roles ON usuarios.id_rol = roles.id_rol 
-                  INNER JOIN 
-                  t_persona AS persona ON usuarios.id_persona = persona.id_persona ";
+include "../../clases/Conexion.php"; 
+$con = new Conexion(); 
+$conexion = $con->conectar(); 
 
-    $respuesta = mysqli_query($conexion , $sql); 
+$sql = " SELECT 
+              usuarios.id_usuario AS idUsuario,
+              usuarios.usuario AS nombreUsuario,
+              roles.nombre AS rol,
+              usuarios.id_rol AS idRol,
+              usuarios.ubicacion AS ubicacion,
+              usuarios.activo AS estatus,
+              usuarios.id_persona AS idPersona,
+              persona.nombre AS nombrePersona,
+              persona.paterno AS paterno,
+              persona.materno AS materno,
+              persona.fecha_nacimiento fechaNacimiento,
+              persona.sexo AS sexo,
+              persona.correo AS correo,
+              persona.telefono AS telefono
+        FROM
+              t_usuarios AS usuarios 
+              INNER JOIN 
+              t_cat_roles AS roles ON usuarios.id_rol = roles.id_rol 
+              INNER JOIN 
+              t_persona AS persona ON usuarios.id_persona = persona.id_persona ";
+
+$respuesta = mysqli_query($conexion , $sql); 
 ?>
 
-<table class="table table-sm dt-responsive nowrap" id="tablaUsuariosDataTable" style="width:100%">
-  <thead>
-      <th>Apellido paterno</th>
-      <th>Apellido Materno</th>
-      <th>Nombre</th>
-      <th>Edad</th>
-      <th>Ubicacion</th>
-      <th>Telefono</th>
-      <th>Correo</th>
-      <th>Usuario</th>
-      <th>Sexo</th>
-      <th>Reset Password</th>
-      <th>Activar</th>
-      <th>Editar</th>
-      <th>Eliminar</th>
-  </thead>
-  <tbody>
-    <?php 
-      while ($mostrar = mysqli_fetch_array($respuesta)){
-    ?>
-    <tr>
-      <td><?php echo $mostrar['paterno'];?></td>
-      <td><?php echo $mostrar['materno'];?></td>
-      <td><?php echo $mostrar['nombrePersona'];?></td>
-      <td><?php echo $mostrar['fechaNacimiento'];?></td>
-      <td><?php echo $mostrar['ubicacion'];?></td>
-      <td><?php echo $mostrar['telefono'];?></td>
-      <td><?php echo $mostrar['correo'];?></td>
-      <td><?php echo $mostrar['nombreUsuario'];?></td>
-      <td><?php echo $mostrar['sexo'];?></td>
-      <td>
-          <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalResetPassword" onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario']?>)">
-            <span class="fas fa-exchange-alt"></span>
-          </button>
-      </td>
-      <td>
-        <?php 
-          if($mostrar['estatus'] == 1){ 
-        ?>
-             <button class="btn btn-secondary btn-sm" 
-             onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario'] ?>,<?php echo $mostrar['estatus']?>)">
-              <span class="fas fa-power-off"></span> Off
-            </button>
-        <?php 
-          }else if($mostrar['estatus'] == 0){
-        ?>
-            <button class="btn btn-success btn-sm" 
-            onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario'] ?>,<?php echo $mostrar['estatus']?>)">
-              <span class="fas fa-power-off"></span> On
-            </button>
-        <?php
-          } 
-        ?>
-      </td>
-        <td>
-          <button class="btn btn-warning btn-sm" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#modalActualizarUsuarios"
-                  onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
-            <span class="fas fa-edit"></span>
-          </button>
-        </td>
-      <td>
-        <?php if($mostrar['idRol'] != 0){ ?>
-          <button class ="btn btn-danger btn-sm" onclick="eliminarUsuario(<?php echo $mostrar['idUsuario']?>,<?php echo $mostrar['idPersona']?> )">
-              <span class="fas fa-user-times"></span> 
-          </button>
-        <?php } ?>
-      </td>
-    </tr>
-    <?php  }?>
-  </tbody>
-</table>
+<div class="card shadow-sm border-0">
+  <div class="card-body">
 
-<script>
- $(document).ready(function(){
-      $('#tablaUsuariosDataTable').DataTable({
-                language :{
-                    url : "../public/datatable/es_es.json"
-                }
-            }); 
-  });  
-</script>
+    <h5 class="mb-4 fw-bold text-primary">
+      <i class="fas fa-users me-2"></i> Gestión de usuarios
+    </h5>
+
+    <div class="table-responsive">
+
+      <table class="table table-hover align-middle text-center" id="tablaUsuariosDataTable" style="width:100%">
+
+        <thead class="table-dark">
+          <tr>
+            <th>Apellido paterno</th>
+            <th>Apellido materno</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Ubicación</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Usuario</th>
+            <th>Sexo</th>
+            <th>Reset</th>
+            <th>Estatus</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php 
+          while ($mostrar = mysqli_fetch_array($respuesta)){
+          ?>
+          <tr>
+            <td><?php echo $mostrar['paterno'];?></td>
+            <td><?php echo $mostrar['materno'];?></td>
+            <td class="fw-semibold"><?php echo $mostrar['nombrePersona'];?></td>
+            <td><?php echo $mostrar['fechaNacimiento'];?></td>
+            <td><?php echo $mostrar['ubicacion'];?></td>
+            <td><?php echo $mostrar['telefono'];?></td>
+            <td class="text-muted"><?php echo $mostrar['correo'];?></td>
+            <td><?php echo $mostrar['nombreUsuario'];?></td>
+            <td><?php echo $mostrar['sexo'];?></td>
+
+            <td>
+              <button class="btn btn-outline-info btn-sm rounded-pill"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalResetPassword"
+                      onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario']?>)">
+                <span class="fas fa-key"></span>
+              </button>
+            </td>
+
+            <td>
+              <?php if($mostrar['estatus'] == 1){ ?>
+                <button class="btn btn-outline-secondary btn-sm rounded-pill"
+                        onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario']?>,<?php echo $mostrar['estatus']?>)">
+                  <span class="fas fa-toggle-off"></span>
+                </button>
+              <?php } else { ?>
+                <button class="btn btn-outline-success btn-sm rounded-pill"
+                        onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario']?>,<?php echo $mostrar['estatus']?>)">
+                  <span class="fas fa-toggle-on"></span>
+                </button>
+              <?php } ?>
+            </td>
+
+            <td>
+              <button class="btn btn-outline-warning btn-sm rounded-pill"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalActualizarUsuarios"
+                      onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
+                <span class="fas fa-edit"></span>
+              </button>
+            </td>
+
+            <td>
+              <?php if($mostrar['idRol'] != 0){ ?>
+                <button class="btn btn-outline-danger btn-sm rounded-pill"
+                        onclick="eliminarUsuario(<?php echo $mostrar['idUsuario']?>,<?php echo $mostrar['idPersona']?>)">
+                  <span class="fas fa-trash"></span>
+                </button>
+              <?php } ?>
+            </td>
+
+          </tr>
+          <?php } ?>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+

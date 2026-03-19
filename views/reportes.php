@@ -1,29 +1,41 @@
 <?php 
-    include "header.php"; 
-    if(isset($_SESSION['usuario']) &&  $_SESSION['usuario']['rol'] == 2){
+include "header.php"; 
+if(isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2){
 ?>
-    <!-- Page Content -->
-    <div class="container">
-        <div class="card border-0 shadow my-5">
-            <div class="card-body p-5">
-                <h1 class="fw-light">Reportes</h1>
-                <p class="lead">
-                    <hr>
-                    <div id="tablaReporteAdminLoad"></div>
-                </p>  
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+         
+            <div class="mb-4">
+                <h4 class="fw-bold text-primary mb-0">
+                    <i class="fas fa-clipboard-list me-2"></i> Reportes
+                </h4>
+                <small class="text-muted">Administra y da seguimiento a los reportes del sistema</small>
             </div>
+
+            <hr>
+
+            <div id="tablaReporteAdminLoad"></div>
+
         </div>
+
     </div>
 
+</div>
+
 <?php   
-    include "reportesAdmin/modalAgregarSolucion.php";
-    include "footer.php";
+include "reportesAdmin/modalAgregarSolucion.php";
+include "footer.php";
 ?>
-    <script src="../public/js/reportesAdmin/reportesAdmin.js"></script>
+
+<script src="../public/js/reportesAdmin/reportesAdmin.js"></script>
+
 <?php
-    }else {
-        header("location:../index.html"); 
-    }
+}else {
+    header("location:../index.html"); 
+}
 ?>
-
-

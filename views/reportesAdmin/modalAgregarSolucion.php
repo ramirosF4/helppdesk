@@ -1,28 +1,63 @@
 <form id="frmAgregarSolucionReporte" method="POST" onsubmit="return agregarSolucionReporte()"> 
-    <!-- Modal -->
-    <div class="modal fade" id="modalAgregarSolucionReporte" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Escribe la solucion</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <input type="text" id ="idReporte" name="idReporte" hidden>
-            <label for="solucion">Descripción de la solución</label>
-            <textarea name="solucion" id="solucion" class="form-control" required></textarea>
-            <label for="estatus">EStatus</label>
-            <select name="estatus" id="estatus" class="form-control">
-                <option value="1">Abierto</option>
-                <option value="0">Cerrado</option>
-            </select>
+    
+    <div class="modal fade" id="modalAgregarSolucionReporte" tabindex="-1" aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-centered">
+            
+            <div class="modal-content border-0 shadow-lg rounded-4">
+
+        
+                <div class="modal-header bg-success text-white rounded-top">
+                    <h5 class="modal-title fw-bold">
+                        <i class="fas fa-tools me-2"></i> Registrar solución
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+
+                <div class="modal-body px-4 py-3">
+
+                    <input type="hidden" id="idReporte" name="idReporte">
+
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Descripción de la solución</label>
+                        <textarea name="solucion" 
+                                  id="solucion" 
+                                  class="form-control rounded-3" 
+                                  rows="3"
+                                  placeholder="Describe la solución aplicada..."
+                                  required></textarea>
+                    </div>
+
+                
+                    <div class="mb-2">
+                        <label class="form-label fw-semibold">Estatus</label>
+                        <select name="estatus" id="estatus" class="form-select rounded-3">
+                            <option value="1">Abierto</option>
+                            <option value="0">Cerrado</option>
+                        </select>
+                    </div>
+
+                </div>
+
+        
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button class="btn btn-success rounded-pill px-4 fw-semibold">
+                        <i class="fas fa-save me-1"></i> Guardar
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button class="btn btn-success">Guardar</button>
-        </div>
-        </div>
     </div>
-    </div>
+
 </form>

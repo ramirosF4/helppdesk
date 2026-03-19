@@ -258,3 +258,19 @@ h1{
 #icon {
     width:30%;
 }
+
+.dataTables_wrapper .dt-buttons {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 8px;
+    padding: 5px 10px;
+}
