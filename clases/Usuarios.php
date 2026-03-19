@@ -238,4 +238,73 @@ class Usuarios extends Conexion{
         return $respuesta; 
     }
 
+    public function buscarReportesUsuario($idUsuario){
+        $conexion = Conexion::conectar();
+        $sql = "SELECT * FROM t_reportes WHERE id_usuario = ?";
+        $query = $conexion->prepare($sql);
+        $query->bind_param('i', $idUsuario);
+        $query->execute();
+        $resultado = $query->get_result();
+
+        return $resultado->num_rows > 0 ? 1 : 0;
+    }
+
+    public function buscarAsignacionPersona($idPersona){
+        $conexion = Conexion::conectar();
+        $sql = "SELECT * FROM t_asignacion WHERE id_persona = ?";
+        $query = $conexion->prepare($sql);
+        $query->bind_param('i', $idPersona);
+        $query->execute();
+        $resultado = $query->get_result();
+
+        return $resultado->num_rows > 0 ? 1 : 0;
+    }
+
+    /* public function eliminarUsuario($datos) {
+        $conexion = Conexion::conectar();
+        $reportes = self::buscarReportesUsuario($datos['idUsuario']);
+        $asignaciones = self::buscarAsignacionPersona($datos['idPersona']);
+        if($reportes == 0 && $asignaciones == 0){
+            //eliminamos un usuario
+            $sql = "DELETE FROM t_usuarios WHERE id_usuario = ?";
+            $query = $conexion->prepare($sql); 
+            $query->bind_param('i', $datos['idUsuario']);
+            $respuesta  = $query->execute();
+            $query->close();
+            return $respuesta; 
+        }else{
+            return 0; 
+        }
+    } */
+
+    public function eliminarUsuario($datos) {
+        $conexion = Conexion::conectar();
+
+    
+        $sqlRol = "SELECT id_rol FROM t_usuarios WHERE id_usuario = ?";
+        $queryRol = $conexion->prepare($sqlRol);
+        $queryRol->bind_param('i', $datos['idUsuario']);
+        $queryRol->execute();
+        $resultadoRol = $queryRol->get_result()->fetch_assoc();
+
+        if($resultadoRol['id_rol'] == 2){
+            return "admin";
+        }
+        $reportes = self::buscarReportesUsuario($datos['idUsuario']);
+        $asignaciones = self::buscarAsignacionPersona($datos['idPersona']);
+
+        if($reportes == 0 && $asignaciones == 0){
+            $sql = "DELETE FROM t_usuarios WHERE id_usuario = ?";
+            $query = $conexion->prepare($sql); 
+            $query->bind_param('i', $datos['idUsuario']);
+            $respuesta  = $query->execute();
+            $query->close();
+            return $respuesta; 
+        }else{
+            return 0; 
+        }
+    }
+
+
+
 }

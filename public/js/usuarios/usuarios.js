@@ -114,3 +114,41 @@ function cambioEstatusUsuario(idUsuario, estatus){
 
     });
 }
+
+
+function eliminarUsuario(idUsuario, idPersona){
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Una vez eliminado no se podrá recuperar",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Eliminar"
+    }).then((result)=>{
+        if(result.isConfirmed){
+            $.ajax({
+                type: "POST",
+                data: {idUsuario: idUsuario,
+                        idPersona:idPersona
+                },
+                url: "../procesos/usuarios/crud/eliminarUsuario.php",
+                success:function(respuesta){
+                    respuesta = respuesta.trim();
+
+                    if(respuesta == 1){
+                        $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php"); 
+                        Swal.fire(":D", "Usuario eliminado con éxito", "success"); 
+
+                    }else if(respuesta == "admin"){
+                        Swal.fire("Error", "No puedes eliminar al administrador", "error");
+
+                    }else{
+                        Swal.fire("Error", "No se pudo eliminar", "error");
+                    }
+                }
+            });
+        }
+    });
+    return false; 
+}
+
+ 

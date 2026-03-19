@@ -81,18 +81,20 @@
           } 
         ?>
       </td>
+        <td>
+          <button class="btn btn-warning btn-sm" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#modalActualizarUsuarios"
+                  onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
+            <span class="fas fa-edit"></span>
+          </button>
+        </td>
       <td>
-        <button class="btn btn-warning btn-sm" 
-                data-bs-toggle="modal" 
-                data-bs-target="#modalActualizarUsuarios"
-                onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']?>)">
-          <span class="fas fa-edit"></span>
-        </button>
-      </td>
-      <td>
-        <button class ="btn btn-danger btn-sm">
-        <span class="fas fa-trash-alt"></span> 
-      </button>
+        <?php if($mostrar['idRol'] != 0){ ?>
+          <button class ="btn btn-danger btn-sm" onclick="eliminarUsuario(<?php echo $mostrar['idUsuario']?>,<?php echo $mostrar['idPersona']?> )">
+              <span class="fas fa-user-times"></span> 
+          </button>
+        <?php } ?>
       </td>
     </tr>
     <?php  }?>
